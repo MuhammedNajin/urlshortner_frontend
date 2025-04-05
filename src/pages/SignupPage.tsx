@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppTemplate } from '../templates/AppTemplate';
-import { SignupForm } from '../organisums/SignupForm';
+import { SignupForm } from '../organisums/Signupform';
 
 const SignupPage: React.FC = () => {
     return (
