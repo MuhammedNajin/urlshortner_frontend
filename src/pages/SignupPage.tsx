@@ -1,12 +1,12 @@
 import React from 'react';
 import { AppTemplate } from '../templates/AppTemplate';
-import { SignupForm } from '../organisums/Signupform';
+import { LoginForm } from '../organisums/SigninForm';
 
 const SignupPage: React.FC = () => {
     return (
         <AppTemplate>
            <div className='flex justify-center items-center mt-20 h-[20rem]'>
-             <SignupForm />
+             <LoginForm />
            </div>
         </AppTemplate>
     )
