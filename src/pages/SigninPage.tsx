@@ -5,7 +5,7 @@ import { LoginForm } from '../organisums/SigninForm';
 const SignupPage: React.FC = () => {
     return (
         <AppTemplate>
-         <div className='flex justify-center items-center mt-20 h-[20rem]'>
+         <div className='flex justify-center items-center mt-20 h-[25rem]'>
            <LoginForm/>
          </div>
         </AppTemplate>
