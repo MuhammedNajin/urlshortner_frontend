@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import SignInPage from '../pages/SignupPage';
+import SignInPage from '../pages/SigninPage';
 import SignUpPage from '../pages/SignupPage';
 import Home from '../pages/Home';
 import { ProtectedRoute } from './protectRoutes';
