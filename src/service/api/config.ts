@@ -13,6 +13,7 @@ export const configureApiInterceptors = (dispatch: (action: any) => void) => {
   api.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem('token');
+      console.log('Request Interceptor:', { token });
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
@@ -23,11 +24,28 @@ export const configureApiInterceptors = (dispatch: (action: any) => void) => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error) => {
-      if (error.response && error.response.status === HttpStatusCode.Unauthorized) {
-        localStorage.removeItem('token');
-        dispatch({ type: 'auth/logout' });
-        window.location.href = '/signin';
+    async (error) => {
+      const originalRequest = error.config;
+      if (
+        error.response &&
+        error.response.status === HttpStatusCode.Unauthorized &&
+        !originalRequest._retry &&
+        originalRequest.url !== '/auth/refresh'
+      ) {
+        originalRequest._retry = true;
+        try {
+          const response = await api.post('/auth/refresh');
+          const { accessToken } = response.data.data;
+          localStorage.setItem('token', accessToken);
+          dispatch({ type: 'auth/updateToken', payload: accessToken });
+          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+          return api(originalRequest);
+        } catch (refreshError) {
+          localStorage.removeItem('token');
+          dispatch({ type: 'auth/logout' });
+          window.location.href = '/signin';
+          return Promise.reject(refreshError);
+        }
       }
       return Promise.reject(error);
     }

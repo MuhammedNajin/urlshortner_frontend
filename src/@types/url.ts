@@ -8,3 +8,13 @@ export interface ShortUrlResponse {
     updatedAt: Date;
   
   }
+
+
+  export interface URLEntry {
+  id: string;
+  originalUrl: string;
+  shortUrl: string;
+  clicks: number;
+  createdAt: Date;
+  lastClicked?: Date;
+}

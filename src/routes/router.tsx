@@ -4,6 +4,7 @@ import SignUpPage from '../pages/SignupPage';
 import Home from '../pages/Home';
 import { ProtectedRoute } from './protectRoutes';
 import { AuthRedirect } from './AuthRedirect';
+import HistoryPage from '../pages/History';
 
 export const router = createBrowserRouter([
  
@@ -18,5 +19,9 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element:  <ProtectedRoute> <Home /> </ProtectedRoute>
+  },
+  {
+    path: "/history",
+    element:  <ProtectedRoute> <HistoryPage /> </ProtectedRoute>
   },
 ]);
