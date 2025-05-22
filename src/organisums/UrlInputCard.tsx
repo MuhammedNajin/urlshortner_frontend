@@ -29,6 +29,7 @@ const URLShortenerCard = () => {
       setShortenedUrl(response);
       setIsLoading(false);
     } catch (validationError) {
+      console.error('Validation error:', validationError);
       if (validationError instanceof z.ZodError) {
         setError(validationError.errors[0].message);
       } else {
