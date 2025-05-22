@@ -43,8 +43,8 @@ class AuthService {
       const response = await api.post<AuthResponse>('/auth/signup', userData);
       
       // Store the token in localStorage
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+      if (response.data.accessToken) {
+        localStorage.setItem('token', response.data.accessToken);
       }
       
       return response.data;
